@@ -29,6 +29,20 @@ angular.module('vendorConsoleApp')
           }
       });
 
+      $scope.uploadFile = function () {
+          $upload.upload({
+              url: '/api/v2/media',
+              method: 'POST',
+              file: files[i]
+          }).progress(function (evt) {
+              var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              $scope.uploadProgress = ('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+          }).success(function (data) {
+              $scope.mediaUrl = data.url;
+              $scope.form.mediaFileId = data.id;
+          })
+      };
+
       $scope.upload = function (filePath) {
           if (filePath) {
               $scope.isCommitState = true;
