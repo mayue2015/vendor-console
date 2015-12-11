@@ -1,0 +1,21 @@
+{
+  "name": "vendor-console",
+  "version": "1.0.0",
+  "description": "vendor-console: A Bootstrap And AngularJs project",
+  "dependencies": {
+   
+  },
+  "devDependencies": {
+   
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-camera",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer"
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="餐馆无忧 供应商版 App">
+    <meta name="author" content="马跃">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self'; style-src * 'unsafe-inline' 'self'; script-src * 'self' 'unsafe-inline' 'unsafe-eval'">
+
+    <title>餐馆无忧（供应商版）</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/loading-bar.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- Angular JS -->
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="js/ocLazyLoad.min.js" type="text/javascript"></script>
+    <script src="js/loading-bar.min.js" type="text/javascript"></script>
+    <script src="js/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script src="js/datetime-picker.min.js" type="text/javascript"></script>
+    <script src="js/angular-locale_zh-cn.js" type="text/javascript"></script>
+    <!-- <script src="http://192.168.0.123:8081/target/target-script-min.js#anonymous"></script> -->
+
+    <!-- Custom JS -->
+    <script src="app/app.js" type="text/javascript"></script>
+    <script src="app/ConfirmModalDialogService.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div ng-app="vendorConsoleApp">
+        <div ui-view=""></div>
+
+        <div id="modalConfirmYesNo" class="modal fade">
+            <div class="modal-dialog" style="margin-top: 50%;">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p id="lblMsgConfirmYesNo"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnNoConfirmYesNo" type="button" class="btn btn-default">取消</button>
+                        <button id="btnYesConfirmYesNo" type="button" class="btn btn-primary">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="alertModal" class="modal fade">
+            <div class="modal-dialog" style="margin-top: 50%;">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p id="alertMsg"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="alertBtn" type="button" class="btn btn-primary">我知道了</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

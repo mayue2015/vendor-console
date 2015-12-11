@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand">{{userName}}</span>
+            <button class="btn btn-default navbar-btn refresh-btn" ng-click="logout()">
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;退出登录
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <br>
+    <br>
+    <br>
+    <div class="row home-row">
+        <button class="btn btn-lg btn-primary" style="width: 84%;" ui-sref="purchase-order-list">
+            <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>&nbsp;&nbsp;接单
+        </button>
+    </div>
+    <br>
+    <div class="row home-row" >
+        <button class="btn btn-lg btn-primary" style="width: 84%;" ui-sref="stock-order-list">
+            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;&nbsp;已备货
+        </button>
+    </div>
+    <br>
+    <div class="row home-row" >
+        <button class="btn btn-lg btn-primary" style="width: 84%;" ui-sref="history-purchase-list">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp;&nbsp;历史
+        </button>
+    </div>
+    <br>
+    <div class="row home-row" >
+        <button class="btn btn-lg btn-primary" style="width: 84%;" ui-sref="profile">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;我的
+        </button>
+    </div>
+</div>
+
+<div class="version">当前版本V1.0.0</div>

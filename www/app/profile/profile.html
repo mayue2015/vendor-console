@@ -1,0 +1,116 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand">我的</span>
+            <button type="button" class="btn btn-default navbar-btn refresh-btn" ui-sref="home" style="padding: 6px 8px;">
+                <span class="glyphicon glyphicon-menu-left back-left" aria-hidden="true"></span>返回
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12" style="margin-top: -10px;">
+            <ul class="nav nav-tabs nav-justified" role="tablist" id="tabs" data-tabs="tabs">
+                <li role="presentation" class="active">
+                    <a href="#feedback" aria-controls="feedback" role="tab" data-toggle="tab">意见反馈</a>
+                </li>
+                <li role="presentation">
+                    <a href="#modify-password" aria-controls="modify-password" role="tab" data-toggle="tab">修改密码</a>
+                </li>
+                <li role="presentation">
+                    <a href="#version-description" aria-controls="version-description" role="tab" data-toggle="tab">版本说明</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">  
+                <div role="tabpanel" class="tab-pane fade in active" id="feedback">
+                    <div class="form-group feedback-textarea">
+                        <textarea class="form-control" rows="4" placeholder="请输入您的反馈意见" ng-model="form.content"></textarea>
+                    </div>
+                    <div class="add-img-pic">
+                        <img src="../img/fankui_03.png" ng-src="{{lastPhoto}}" ng-click="addPicture()">
+                    </div>
+                    <div class="feedback-img-tip" ng-if="!lastPhoto">添加您需要反馈的产品图片</div>
+                    <div class="row feedback-commit-btn">
+                        <button type="button" class="btn btn-lg btn-primary" style="width: 89%;" ng-click="upload(lastPhoto)" ng-disabled="isCommitState">提交反馈</button>
+                    </div>
+                </div> 
+
+                <div role="tabpanel" class="tab-pane fade" id="modify-password">  
+                    <form rol="form" name="updatePasswordForm">
+                        <div class="form-group" ng-class="{'has-error':updatePasswordForm.telephone.$invalid && !updatePasswordForm.telephone.$pristine}">
+                            <label><font color="red">*</font>手机号：</label>
+                            <input type="text" class="form-control input-lg" placeholder="手机号" ng-model="telephone" name="telephone" required>
+                            <p ng-show="updatePasswordForm.telephone.$invalid && !updatePasswordForm.telephone.$pristine" class="help-block">请输入您的手机号</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':updatePasswordForm.oldPassword.$invalid && !updatePasswordForm.oldPassword.$pristine}">
+                            <label><font color="red">*</font>原密码：</label>
+                            <input type="password" class="form-control input-lg" placeholder="原密码" ng-model="oldPassword" name="oldPassword" required>
+                            <p ng-show="updatePasswordForm.oldPassword.$invalid && !updatePasswordForm.oldPassword.$pristine" class="help-block">请输入原密码</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':updatePasswordForm.newPassword.$invalid && !updatePasswordForm.newPassword.$pristine}">
+                            <label><font color="red">*</font>新密码：</label>
+                            <input type="password" class="form-control input-lg" placeholder="新密码" ng-model="newPassword" name="newPassword" required> 
+                            <p ng-show="updatePasswordForm.newPassword.$invalid && !updatePasswordForm.newPassword.$pristine" class="help-block">请输入新密码</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':updatePasswordForm.repeatNewPassword.$invalid && !updatePasswordForm.repeatNewPassword.$pristine}">
+                            <label><font color="red">*</font>确认新密码：</label>
+                            <input type="password" class="form-control input-lg" placeholder="确认新密码" ng-model="repeatNewPassword" name="repeatNewPassword" required> 
+                            <p ng-show="updatePasswordForm.repeatNewPassword.$invalid && !updatePasswordForm.repeatNewPassword.$pristine" class="help-block">请再次输入新密码</p>
+                        </div>
+                        <div class="row feedback-commit-btn">
+                            <button type="button" class="btn btn-lg btn-primary" style="width: 90%;" ng-disabled="updatePasswordForm.$invalid" ng-click="updatePassword()">提交修改</button>
+                        </div>
+                        <div class="row feedback-commit-btn">
+                            <button type="button" class="btn btn-lg btn-default" ng-click="reset()" style="width: 90%;border-color: #286090;">重置</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="version-description">  
+                    <div class="bs-callout bs-callout-info">
+                        <h5>版本V1.0.0功能简介</h5>
+                        <ol style="margin-bottom: 6px;margin-left: -4px;">
+                            <li>接单列表，提交备货</li>
+                            <li>历史采购单查询</li>
+                            <li>反馈、修改密码、版本更新说明</li>
+                        </ol>
+                    </div>
+
+                    <div class="bs-callout bs-callout-info">
+                        <h5>版本V1.0.1功能简介</h5>
+                        <ol style="margin-bottom: 6px;margin-left: -4px;">
+                            <li>接单列表，提交备货</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="action-sheet-backdrop">
+    <div class="action-sheet-wrapper" ng-class="{'action-sheet-up': showDrop}">
+        <div class="action-sheet">
+            <div class="action-sheet-group">
+                <button class="button action-sheet-option" ng-click="buttonClicked(0)">从手机相册选择</button>
+                <button class="button action-sheet-option" ng-click="buttonClicked(1)" style="border-top: 1px solid #c8c8c8;">拍照</button>
+            </div>
+
+            <div class="action-sheet-group">
+                <button class="button" ng-click="hideBackdrop()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs a').click(function (e) { 
+            e.preventDefault()
+            $(this).tab('show')
+        });
+    });
+</script>

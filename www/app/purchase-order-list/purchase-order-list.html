@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="btn btn-default navbar-btn back-btn" ui-sref="home" style="padding: 6px 8px;">
+                <span class="glyphicon glyphicon-menu-left back-left" aria-hidden="true"></span>返回
+            </button>
+            <span class="navbar-brand">采购单信息</span>
+            <button type="button" class="btn btn-default navbar-btn refresh-btn" style="padding: 6px 7px;">
+                <span class="glyphicon glyphicon-refresh back-left" aria-hidden="true"></span>&nbsp;刷新
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row" ng-if="true">
+	    <div class="col-lg-12 dataTable_wrapper">
+	     	<div class="panel panel-default">
+	     		<div class="panel-heading">
+                    <strong>采购单列表</strong>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-vertical-center">
+                                <input type="checkbox" ng-click="checkAll()">
+                            </th>
+                            <th class="text-vertical-center">产品名称</th>
+                            <th class="text-vertical-center">单位</th>
+                            <th class="text-vertical-center">需求数量</th>
+                            <th class="text-vertical-center">供应数量</th>
+                        </tr>
+                    </thead>
+                 	<tbody>
+                 		<tr>
+                            <td class="text-vertical-center">
+                                <input type="checkbox" checklist-model="searchForm.checkedItemIds" checklist-value="purchaseOrder.id">
+                            </td>
+                            <td>祥瑞粉丝（毛细）5kg/袋</td>
+                            <td class="text-vertical-center">袋</td>
+                            <td class="text-vertical-center">1</td>
+                            <td class="text-vertical-center" style="width: 20%;">
+                                <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" style="padding: 6px; color: red;">
+                            </td>
+                        </tr>
+                 	</tbody>
+                </table>
+	     	</div>
+	    </div>
+	</div>
+    <div class="row" style="text-align: center; margin-bottom: 10px;">
+        <button type="button" class="btn btn-lg btn-primary" style="width: 90%;">确认备货</button>
+    </div>
+
+    <div class="row" ng-if="false">
+        <p class="no-order-tip">
+            <span class="glyphicon glyphicon-alert" aria-hidden="true" style="top: 2px; padding-right: 5px;"></span>暂无采购单信息
+        </p>
+    </div>
+</div>

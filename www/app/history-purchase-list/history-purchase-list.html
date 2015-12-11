@@ -1,0 +1,71 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="btn btn-default navbar-btn back-btn" ui-sref="home" style="padding: 6px 8px;">
+                <span class="glyphicon glyphicon-menu-left back-left" aria-hidden="true"></span>返回
+            </button>
+            <span class="navbar-brand">历史采购单信息</span>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+	<div class="row form-row">
+		<div class="col-lg-12">
+			<form rol="form" class="form-inline">
+				<div class="form-group">
+	                <input type="text" class="form-control input-lg" placeholder="起始时间" datepicker-append-to-body="true" datetime-picker="{{dateOptions.dateFormat}}" ng-model="searchForm.startDate" is-open="openedStart" datepicker-options="dateOptions" timepicker-Options="{showMeridian:false}" today-text="今日" now-text="现在" clear-text="清除" date-text="日期" time-text="时间" close-text="关闭" ng-click="openedStart=true" date-for-search style="    height: 42px;"/>
+	            </div>
+	            <div class="form-group">
+	                <input type="text" class="form-control input-lg" placeholder="结束时间" datepicker-append-to-body="true" datetime-picker="{{dateOptions.dateFormat}}" ng-model="searchForm.endDate" is-open="openedEnd" datepicker-options="dateOptions" timepicker-Options="{showMeridian:false}" today-text="今日" now-text="现在" clear-text="清除" date-text="日期" time-text="时间" close-text="关闭" ng-click="openedEnd=true" date-for-search style="    height: 42px;"/>
+	            </div>
+	            <div class="row">
+	            	<button type="button" class="btn btn-primary btn-lg search-btn" ng-click="search()">
+		            	<span class="glyphicon glyphicon-search back-left" aria-hidden="true" style="margin-right: 6px;"></span>查询
+		            </button>
+	            </div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row" ng-if="true">
+	    <div class="col-lg-12 dataTable_wrapper">
+	     	<table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-vertical-center">产品名称</th>
+                        <th class="text-vertical-center">单位</th>
+                        <th class="text-vertical-center" style="width: 16%;">需求数量</th>
+                        <th class="text-vertical-center" style="width: 16%;">实际数量</th>
+                        <th class="text-vertical-center">总金额</th>
+                    </tr>
+                </thead>
+             	<tbody>
+             		<tr>
+                        <td>祥瑞粉丝（毛细）5kg/袋</td>
+                        <td class="text-vertical-center">袋</td>
+                        <td class="text-vertical-center">1</td>
+                        <td class="text-vertical-center">1</td>
+                        <td class="text-vertical-center">33</td>
+                    </tr>
+             	</tbody>
+            </table>
+	    </div>
+	</div>
+
+	<div class="row" align="center">
+        <div calss="col-lg-12">
+            <pagination total-items="page.totalItems" ng-model="page.currentPage" items-per-page="page.itemsPerPage" max-size="5" class="pagination" boundary-links="true" ng-change="pageChanged()" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+    </div>
+
+    <div class="row" ng-if="false">
+        <p class="no-order-tip">
+            <span class="glyphicon glyphicon-alert" aria-hidden="true" style="top: 2px; padding-right: 5px;"></span>暂无历史采购单信息
+        </p>
+    </div>
+</div>
+
+<div class="back-top-box">
+	<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" style="top: 6px;left: -1px;">
+</div>
