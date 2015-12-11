@@ -34,7 +34,9 @@
                     </div>
                     <div class="feedback-img-tip" ng-if="!lastPhoto">添加您需要反馈的产品图片</div>
                     <div class="row feedback-commit-btn">
-                        <button type="button" class="btn btn-lg btn-primary" style="width: 89%;" ng-click="upload(lastPhoto)" ng-disabled="isCommitState">提交反馈</button>
+                        <button type="button" class="btn btn-lg btn-primary" style="width: 89%;" ng-click="upload(lastPhoto)" ng-disabled="isCommitState">
+                            <span class="glyphicon glyphicon-ok-circle back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>提交反馈
+                        </button>
                     </div>
                 </div> 
 
@@ -61,10 +63,14 @@
                             <p ng-show="updatePasswordForm.repeatNewPassword.$invalid && !updatePasswordForm.repeatNewPassword.$pristine" class="help-block">请再次输入新密码</p>
                         </div>
                         <div class="row feedback-commit-btn">
-                            <button type="button" class="btn btn-lg btn-primary" style="width: 90%;" ng-disabled="updatePasswordForm.$invalid" ng-click="updatePassword()">提交修改</button>
+                            <button type="button" class="btn btn-lg btn-primary" style="width: 90%;" ng-disabled="updatePasswordForm.$invalid" ng-click="updatePassword()">
+                                <span class="glyphicon glyphicon-ok-circle back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>提交修改
+                            </button>
                         </div>
                         <div class="row feedback-commit-btn">
-                            <button type="button" class="btn btn-lg btn-default" ng-click="reset()" style="width: 90%;border-color: #286090;">重置</button>
+                            <button type="button" class="btn btn-lg btn-default" ng-click="reset()" style="width: 90%;border-color: #286090;">
+                                <span class="glyphicon glyphicon-remove-circle back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>重置
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -100,7 +106,9 @@
             </div>
 
             <div class="action-sheet-group">
-                <button class="button" ng-click="hideBackdrop()">取消</button>
+                <button class="button" ng-click="hideBackdrop()">
+                    <span class="glyphicon glyphicon-remove back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>取消
+                </button>
             </div>
         </div>
     </div>
