@@ -91,6 +91,8 @@ angular.module('vendorConsoleApp')
                   sourceType: Camera.PictureSourceType.PHOTOLIBRARY
               }).then(function (imageURI) {
                   $scope.lastPhoto = imageURI;
+
+                  $('div.action-sheet-backdrop')[0].style.display = "none";
               })
 
               return true;
@@ -102,6 +104,8 @@ angular.module('vendorConsoleApp')
                   saveToPhotoAlbum: false
               }).then(function (imageURI) {
                   $scope.lastPhoto = imageURI;
+
+                  $('div.action-sheet-backdrop')[0].style.display = "none";
               })
 
               return true;

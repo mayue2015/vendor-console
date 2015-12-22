@@ -18,6 +18,8 @@ angular.module('vendorConsoleApp')
 
 		$scope.format = 'yyyy-MM-dd';
 
+        $scope.showLoading = true;
+
 		$scope.page = {
             itemsPerPage : 50
         };
@@ -68,13 +70,16 @@ angular.module('vendorConsoleApp')
             // console.log(data);
             $scope.historyPurchaseLists = data.content;
 
+            $scope.showLoading = false;
+
             /*分页数据*/
             $scope.page.itemsPerPage = data.pageSize;
             $scope.page.totalItems = data.total;
             $scope.page.currentPage = data.page + 1;
         })
         .error(function (data, status) {
-            
+            ConfirmModalDialogService.AsyncAlert("获取历史数据失败");
+            $scope.showLoading = false;
         });
 
         $scope.resetPageAndSearch = function () {

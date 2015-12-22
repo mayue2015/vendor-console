@@ -9,7 +9,7 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid" id="history-page">
 	<div class="row form-row">
 		<div class="col-lg-12">
 			<form rol="form" class="form-inline">
@@ -67,6 +67,29 @@
         <p class="no-order-tip">
             <span class="glyphicon glyphicon-alert" aria-hidden="true" style="top: 2px; padding-right: 5px;"></span>暂无历史采购单信息
         </p>
+    </div>
+
+    <div class="spinner-page" ng-if="showLoading === true">
+        <div class="spinner-container container1">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+            <div class="circle4"></div>
+        </div>
+
+        <p>加载中...</p>
     </div>
 </div>
 

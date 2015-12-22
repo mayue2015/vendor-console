@@ -11,6 +11,7 @@ angular.module('vendorConsoleApp')
 
     	$scope.isCheckedAll = false;
         $scope.isCommiting = false;
+        $scope.showLoading = true;
         $scope.searchForm = {};
     	$scope.searchForm.checkedItemIds = [];
 
@@ -19,9 +20,11 @@ angular.module('vendorConsoleApp')
     			.success(function (data, status) {
     				// console.log(data.content);
     				$scope.purchaseOrders = data.content;
+                    $scope.showLoading = false;
     			})
     			.error(function (data, status) {
     				ConfirmModalDialogService.AsyncAlert("获取采购单数据失败");
+                    $scope.showLoading = false;
     			});
     	};
 
@@ -50,6 +53,7 @@ angular.module('vendorConsoleApp')
                 "确认提交所选备货？", 
                 function() {
                     $scope.isCommiting = true;
+                    $scope.showLoading = true;
 
                     $http({
                         url: apiConfig.host + "/admin/vendor-api/vendor/order/submit",
@@ -60,11 +64,16 @@ angular.module('vendorConsoleApp')
                        ConfirmModalDialogService.AsyncAlert("提交备货成功");
                        
                        $scope.loadPurchaseOrders();
+
+                       window.location.href = "#";
+                       
                        $scope.isCommiting = false;
+                       $scope.showLoading = false;
                     })
                     .error(function (data, status) {
                         ConfirmModalDialogService.AsyncAlert("提交异常");
                         $scope.isCommiting = false;
+                        $scope.showLoading = false;
                     })
 
                 }
