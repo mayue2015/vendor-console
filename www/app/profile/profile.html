@@ -42,11 +42,6 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="modify-password">  
                     <form rol="form" name="updatePasswordForm">
-                        <div class="form-group" ng-class="{'has-error':updatePasswordForm.telephone.$invalid && !updatePasswordForm.telephone.$pristine}">
-                            <label><font color="red">*</font>手机号：</label>
-                            <input type="text" class="form-control input-lg" placeholder="手机号" ng-model="telephone" name="telephone" required>
-                            <p ng-show="updatePasswordForm.telephone.$invalid && !updatePasswordForm.telephone.$pristine" class="help-block">请输入您的手机号</p>
-                        </div>
                         <div class="form-group" ng-class="{'has-error':updatePasswordForm.oldPassword.$invalid && !updatePasswordForm.oldPassword.$pristine}">
                             <label><font color="red">*</font>原密码：</label>
                             <input type="password" class="form-control input-lg" placeholder="原密码" ng-model="oldPassword" name="oldPassword" required>
@@ -77,7 +72,7 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="version-description">  
                     <div class="bs-callout bs-callout-info">
-                        <h5>版本V1.0.0功能简介</h5>
+                        <h5>版本V1.0功能简介</h5>
                         <ol style="margin-bottom: 6px;margin-left: -4px;">
                             <li>接单列表，提交备货</li>
                             <li>历史采购单查询</li>
@@ -85,12 +80,12 @@
                         </ol>
                     </div>
 
-                    <div class="bs-callout bs-callout-info">
-                        <h5>版本V1.0.1功能简介</h5>
+                    <!-- <div class="bs-callout bs-callout-info">
+                        <h5>版本V1.1功能简介</h5>
                         <ol style="margin-bottom: 6px;margin-left: -4px;">
-                            <li>接单列表，提交备货</li>
+                            <li></li>
                         </ol>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

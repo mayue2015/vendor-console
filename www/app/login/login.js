@@ -30,13 +30,14 @@ angular.module('vendorConsoleApp')
             $scope.isLoginState = true;
 
             $http({
-                url: apiConfig.host + "/api/login",
+                url: apiConfig.host + "/admin/vendor-api/login",
                 method: 'POST',
                 data: user
             })
             .success(function (data, status) {
                 window.localStorage['cachedUsername'] = user.username;
                 window.localStorage['password'] = user.password;
+                window.localStorage['realName'] = data.name;
 
                 $state.go("home");
 

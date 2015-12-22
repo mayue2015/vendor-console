@@ -12,13 +12,5 @@ angular.module('vendorConsoleApp')
 			})
 		};
 
-		service.setRestaurantInfo = function (order) {
-			service.order = order; 
-		}
-
-		service.getRestaurantInfo = function () {
-			return service.order; 
-		}
-
 		return service;
 	});

@@ -52,16 +52,21 @@ angular.module('vendorConsoleApp')
 
                   FeedbackService.feedback($scope.form.content, file.id).then(function () {
                       ConfirmModalDialogService.AsyncAlert("反馈成功，我们会尽快处理");
+                      $scope.form.content = null;
+                      $scope.lastPhoto = null;
+                      
                       return;
                   });
               }, function (err) {
                   $scope.isCommitState = false;
+
                   ConfirmModalDialogService.AsyncAlert("反馈失败");
                   return;
               });
           } else {
               FeedbackService.feedback($scope.form.content).then(function () {
                   ConfirmModalDialogService.AsyncAlert("反馈成功，我们会尽快处理");
+                  $scope.form.content = null;
                   return;
               });
           }
@@ -104,7 +109,6 @@ angular.module('vendorConsoleApp')
       };
 
     	$scope.reset = function() {
-      		$scope.telephone = "";
     			$scope.oldPassword = null;
   	    	$scope.newPassword = null;
   	    	$scope.repeatNewPassword = null;
@@ -114,27 +118,28 @@ angular.module('vendorConsoleApp')
 
   		$scope.updatePassword = function() {
   			if ($scope.newPassword !== $scope.repeatNewPassword) {
-  				ConfirmModalDialogService.AsyncAlert("请再次确认新密码");
-                return;
+  				  ConfirmModalDialogService.AsyncAlert("请再次确认新密码");
+            return;
   			} else {
-  				$http({
-                    method: 'PUT',
-                    url: apiConfig.host + '/admin/api/admin-user/me/password',
-                    params: {
-                    	oldPassword: $scope.oldPassword,
-                    	newPassword: $scope.newPassword
-                    },
-                    headers: {'Content-Type': 'application/json;charset=UTF-8'}
-                })
-                .success(function(data) {
-                    ConfirmModalDialogService.AsyncAlert("密码修改成功");
-                    $scope.reset();
-                    return;
-                })
-                .error(function(data) {
-                    ConfirmModalDialogService.AsyncAlert("密码修改失败");
-                    return;
-                });
+  				  $http({
+                url: apiConfig.host + '/admin/vendor-api/vendor/updateVendorPassword',
+                method: 'PUT',
+                params: {
+                	oldPassword: $scope.oldPassword,
+                	newPassword: $scope.newPassword
+                },
+                headers: {'Content-Type': 'application/json;charset=UTF-8'}
+            })
+            .success(function (data, status) {
+                ConfirmModalDialogService.AsyncAlert("密码修改成功");
+                $scope.reset();
+
+                return;
+            })
+            .error(function (data) {
+                ConfirmModalDialogService.AsyncAlert("密码修改失败");
+                return;
+            });
   			}
   		};
 

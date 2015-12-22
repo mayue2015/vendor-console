@@ -1,5 +1,6 @@
 angular.module('vendorConsoleApp')
     .factory('CameraService', ['$q', 'apiConfig', function ($q, $cordovaFileTransfer, apiConfig) {
+        // '$cordovaFileTransfer',
         return {
             getPicture: function (options) {
                 var q = $q.defer();

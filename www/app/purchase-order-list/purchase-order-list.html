@@ -5,7 +5,7 @@
                 <span class="glyphicon glyphicon-menu-left back-left" aria-hidden="true"></span>返回
             </button>
             <span class="navbar-brand">采购单信息</span>
-            <button type="button" class="btn btn-default navbar-btn refresh-btn" style="padding: 6px 7px;">
+            <button type="button" class="btn btn-default navbar-btn refresh-btn" style="padding: 6px 7px;" ng-click="loadPurchaseOrders()">
                 <span class="glyphicon glyphicon-refresh back-left" aria-hidden="true"></span>&nbsp;刷新
             </button>
         </div>
@@ -13,11 +13,12 @@
 </nav>
 
 <div class="container-fluid">
-	<div class="row" ng-if="true">
+	<div class="row" ng-if="purchaseOrders.length > 0">
 	    <div class="col-lg-12 dataTable_wrapper">
 	     	<div class="panel panel-default">
 	     		<div class="panel-heading">
                     <strong>采购单列表</strong>
+                    <span>今日需备货：{{purchaseOrders.length}}</span>
                 </div>
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -26,21 +27,18 @@
                                 <input type="checkbox" ng-click="checkAll()">
                             </th>
                             <th class="text-vertical-center">产品名称</th>
-                            <th class="text-vertical-center">单位</th>
-                            <th class="text-vertical-center">需求数量</th>
-                            <th class="text-vertical-center">供应数量</th>
+                            <th class="text-vertical-center">需求数量（单位）</th>
                         </tr>
                     </thead>
                  	<tbody>
-                 		<tr>
+                 		<tr ng-repeat="purchaseOrder in purchaseOrders">
                             <td class="text-vertical-center">
                                 <input type="checkbox" checklist-model="searchForm.checkedItemIds" checklist-value="purchaseOrder.id">
                             </td>
-                            <td>祥瑞粉丝（毛细）5kg/袋</td>
-                            <td class="text-vertical-center">袋</td>
-                            <td class="text-vertical-center">1</td>
-                            <td class="text-vertical-center" style="width: 20%;">
-                                <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" style="padding: 6px; color: red;">
+                            <td>{{purchaseOrder.name}}</td>
+                            <td class="text-vertical-center">
+                                <span ng-if="purchaseOrder.bundleQuantity !== 0">{{purchaseOrder.bundleQuantity}}{{purchaseOrder.bundleUnit}}</span>
+                                <span ng-if="purchaseOrder.singleQuantity !== 0">{{purchaseOrder.singleQuantity}}{{purchaseOrder.singleUnit}}</span>
                             </td>
                         </tr>
                  	</tbody>
@@ -48,13 +46,15 @@
 	     	</div>
 	    </div>
 	</div>
-    <div class="row" style="text-align: center; margin-bottom: 10px;">
-        <button type="button" class="btn btn-lg btn-primary" style="width: 90%;">
-            <span class="glyphicon glyphicon-ok-circle back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>确认备货
+    <div class="row" style="text-align: center; margin-bottom: 20px;" ng-if="purchaseOrders.length > 0">
+        <button type="button" class="btn btn-lg btn-primary" style="width: 90%;" ng-click="confirmPurchase()" ng-disabled="isCommiting">
+            <span class="glyphicon glyphicon-ok-circle back-left" aria-hidden="true" style="margin-right: 6px;top: 3px;"></span>
+            <span ng-if="!isCommiting">确认备货</span>
+            <span ng-if="isCommiting">正在提交...</span>
         </button>
     </div>
 
-    <div class="row" ng-if="false">
+    <div class="row" ng-if="purchaseOrders.length === 0">
         <p class="no-order-tip">
             <span class="glyphicon glyphicon-alert" aria-hidden="true" style="top: 2px; padding-right: 5px;"></span>暂无采购单信息
         </p>

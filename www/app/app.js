@@ -13,7 +13,8 @@ angular
         'angular-loading-bar',
         'ui.router',
         'ui.bootstrap',
-        'ui.bootstrap.datetimepicker'
+        'ui.bootstrap.datetimepicker',
+        'checklist-model'
     ])
     .constant('apiConfig', {
         "host": "http://139.129.15.29"  //线上
@@ -89,7 +90,6 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
-                                    'app/PurchaseOrderListService.js',
                                     'app/purchase-order-list/PurchaseOrderListCtrl.js'
                                 ]
                             })
@@ -114,7 +114,7 @@ angular
                 .state('history-purchase-list', {
                     templateUrl: 'app/history-purchase-list/history-purchase-list.html',
                     controller: 'HistoryPurchaseListCtrl',
-                    url: '/history-purchase-list',
+                    url: '/history-purchase-list/?page&pageSize&start&end',
                     resolve: {
                         loadMyFiles: function ($ocLazyLoad) {
                             return $ocLazyLoad.load({

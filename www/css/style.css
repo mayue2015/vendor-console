@@ -4,7 +4,8 @@ body {
     -webkit-appearance: none;
 }
 a, button {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    /*-webkit-tap-highlight-color: rgba(0,0,0,0);*/
+    -webkit-tap-highlight-color: transparent;
 }
 input::-webkit-input-speech-button {
     display: none;
@@ -24,6 +25,7 @@ input[type=checkbox], input[type=radio] {
 }
 .panel-heading {
 	padding-left: 8px;
+    padding-right: 8px;
 }
 #lblMsgConfirmYesNo, #alertMsg {
     margin-top: 3px;
@@ -260,5 +262,9 @@ a {
 button.button:active {
     background-color: #D9D9D9;
 }
-
+.panel-heading>span {
+    display: block;
+    float: right;
+    color: #286090;
+}
 

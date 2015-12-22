@@ -4,7 +4,7 @@ angular.module('vendorConsoleApp')
 
         service.feedback = function (content, fileId) {
             return $http({
-                url: apiConfig.host + "/api/v2/feedback",
+                url: apiConfig.host + "/admin/vendor-api/feedback",
                 method: 'POST',
                 data: {feedbackDescription: content, mediaFileId: fileId}
             }).then(function(payload) {
