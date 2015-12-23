@@ -1,9 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <span class="navbar-brand">我的</span>
-            <button type="button" class="btn btn-default navbar-btn refresh-btn" ui-sref="home" style="padding: 6px 8px;">
+            <button type="button" class="btn btn-default navbar-btn back-btn" ui-sref="home" style="padding: 6px 8px;">
                 <span class="glyphicon glyphicon-menu-left back-left" aria-hidden="true"></span>返回
+            </button>
+            <span class="navbar-brand">我的</span>
+            <button class="btn btn-default navbar-btn refresh-btn" ng-click="logout()">
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;退出登录
             </button>
         </div>
     </div>

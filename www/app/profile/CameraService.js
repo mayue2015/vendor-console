@@ -16,7 +16,7 @@ angular.module('vendorConsoleApp')
 
             upload: function(filePath) {
                 document.addEventListener('deviceready', function () {
-                    return $cordovaFileTransfer.upload(apiConfig.host + "/api/v2/media", filePath, {
+                    return $cordovaFileTransfer.upload(apiConfig.host + "/admin/vendor-api/media", filePath, {
                         fileKey: "file",
                         chunkedMode: false
                     }).then(function(result) {

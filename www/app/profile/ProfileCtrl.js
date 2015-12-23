@@ -121,31 +121,53 @@ angular.module('vendorConsoleApp')
     	$scope.reset();
 
   		$scope.updatePassword = function() {
-  			if ($scope.newPassword !== $scope.repeatNewPassword) {
-  				  ConfirmModalDialogService.AsyncAlert("请再次确认新密码");
-            return;
-  			} else {
-  				  $http({
-                url: apiConfig.host + '/admin/vendor-api/vendor/updateVendorPassword',
-                method: 'PUT',
-                params: {
-                	oldPassword: $scope.oldPassword,
-                	newPassword: $scope.newPassword
-                },
-                headers: {'Content-Type': 'application/json;charset=UTF-8'}
-            })
-            .success(function (data, status) {
-                ConfirmModalDialogService.AsyncAlert("密码修改成功");
-                $scope.reset();
+    			if ($scope.newPassword !== $scope.repeatNewPassword) {
+    				  ConfirmModalDialogService.AsyncAlert("请再次确认新密码");
+              return;
+    			} else {
+    				  $http({
+                  url: apiConfig.host + '/admin/vendor-api/vendor/updateVendorPassword',
+                  method: 'PUT',
+                  params: {
+                  	oldPassword: $scope.oldPassword,
+                  	newPassword: $scope.newPassword
+                  },
+                  headers: {'Content-Type': 'application/json;charset=UTF-8'}
+              })
+              .success(function (data, status) {
+                  ConfirmModalDialogService.AsyncAlert("密码修改成功");
+                  $scope.reset();
 
-                return;
-            })
-            .error(function (data) {
-                ConfirmModalDialogService.AsyncAlert("密码修改失败");
-                return;
-            });
-  			}
+                  return;
+              })
+              .error(function (data) {
+                  ConfirmModalDialogService.AsyncAlert("密码修改失败");
+                  return;
+              });
+    			}
   		};
 
+      // 退出登录
+      $scope.logout = function () {
+          ConfirmModalDialogService.AsyncConfirmYesNo(
+              "确定退出登录？", 
+              function() {
+                  $http({
+                      url: apiConfig.host + "/admin/vendor-api/logout",
+                      method: 'GET'
+                  })
+                  .success(function (data, status) {
+                      window.localStorage.removeItem('cachedUsername');
+                      window.localStorage.removeItem('password');
+                      window.localStorage.removeItem('realName');
+
+                      $state.go("login");
+                  })
+                  .error(function (data, status) {
+                      ConfirmModalDialogService.AsyncAlert("退出异常");
+                  })
+              }
+          );
+      };
 
     });

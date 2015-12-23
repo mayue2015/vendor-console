@@ -19,7 +19,7 @@ angular
     .constant('apiConfig', {
         // "host": "http://139.129.15.29"  //线上
         // "host": "http://114.215.100.12"  //测试
-        "host": "http://192.168.1.114"  //本地   http://192.168.1.114
+        "host": ""  //本地   http://192.168.1.114
     })
 	.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$locationProvider', '$httpProvider', '$provide',
         function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $locationProvider, $httpProvider, $provide) {

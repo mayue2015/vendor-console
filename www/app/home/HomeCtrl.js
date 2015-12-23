@@ -16,28 +16,5 @@ angular.module('vendorConsoleApp')
             $scope.userName = window.localStorage['realName'];
         else
             ConfirmModalDialogService.AsyncAlert("获取登录用户异常");
-
-        // 退出登录
-        $scope.logout = function () {
-            ConfirmModalDialogService.AsyncConfirmYesNo(
-                "确定退出登录？", 
-                function() {
-                    $http({
-                        url: apiConfig.host + "/admin/vendor-api/logout",
-                        method: 'GET'
-                    })
-                    .success(function (data, status) {
-                        window.localStorage.removeItem('cachedUsername');
-                        window.localStorage.removeItem('password');
-                        window.localStorage.removeItem('realName');
-
-                        $state.go("login");
-                    })
-                    .error(function (data, status) {
-                        ConfirmModalDialogService.AsyncAlert("退出异常");
-                    })
-                }
-            );
-        };
         
     });
