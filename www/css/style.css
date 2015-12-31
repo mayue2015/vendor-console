@@ -270,6 +270,9 @@ button.button:active {
 #history-page .spinner-page {
     margin-top: 30%;
 }
+.pagination>li>a, .pagination>li>span {
+        padding: 6px 10px;
+}
 
 /*Loading*/
 .spinner-page {

@@ -136,13 +136,11 @@ angular.module('vendorConsoleApp')
               })
               .success(function (data, status) {
                   ConfirmModalDialogService.AsyncAlert("密码修改成功");
-                  $scope.reset();
-
-                  return;
+                  
+                  $state.go("home");
               })
               .error(function (data) {
                   ConfirmModalDialogService.AsyncAlert("密码修改失败");
-                  return;
               });
     			}
   		};
