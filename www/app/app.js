@@ -17,7 +17,7 @@ angular
         'checklist-model'
     ])
     .constant('apiConfig', {
-        "host": "http://139.129.15.29"  //线上
+        "host": "http://115.28.66.10"  //线上
         // "host": "http://115.28.64.174"  //测试
         // "host": "http://192.168.1.117"  //本地   http://192.168.1.114
     })
