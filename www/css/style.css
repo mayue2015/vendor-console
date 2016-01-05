@@ -16,6 +16,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 input[type=checkbox], input[type=radio] {
     -webkit-transform: scale(1.8,1.8);
 }
+.modal.fade .modal-dialog {
+    transition: transform .15s ease-out;
+    -webkit-transition: -webkit-transform .15s ease-out;
+}
 .col-lg-12 {
 	padding-right: 1px;
     padding-left: 1px;
