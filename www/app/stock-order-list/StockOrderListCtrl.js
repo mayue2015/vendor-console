@@ -7,11 +7,23 @@
  * Controller of the vendorConsoleApp
  */
 angular.module('vendorConsoleApp')
-    .controller('StockOrderListCtrl', function($scope, $http, apiConfig, ConfirmModalDialogService) {
+    .controller('StockOrderListCtrl', function($scope, $http, apiConfig, ConfirmModalDialogService, CommonService) {
 
     	$scope.showLoading = true;
+    	$scope.searchForm = {
+    		depotId: ""
+    	};
 
-    	$http.get(apiConfig.host + "/admin/vendor-api/vendor/order/ready")
+    	CommonService.getVendorDepots().then(function(data) {
+            $scope.vendorDepots = data;
+        });
+
+    	$scope.loadStockOrders = function () {
+	    	$http({
+	    		url: apiConfig.host + "/admin/vendor-api/vendor/order/ready",
+	    		method: "GET",
+	    		params: {depotId: $scope.searchForm.depotId}
+	    	})
 			.success(function (data, status) {
 				// console.log(data.content);
 				$scope.purchaseOrders = data.content;
@@ -21,5 +33,8 @@ angular.module('vendorConsoleApp')
 				ConfirmModalDialogService.AsyncAlert("列表加载失败");
 				$scope.showLoading = false;
 			});
+		};
+
+		$scope.loadStockOrders();
 
     });

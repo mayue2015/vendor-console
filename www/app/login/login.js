@@ -7,13 +7,26 @@
  * Controller of the vendorConsoleApp
  */
 angular.module('vendorConsoleApp')
-    .controller('LoginCtrl', function($scope, $http, $state, apiConfig, ConfirmModalDialogService) {
+    .controller('LoginCtrl', function($scope, $http, $state, apiConfig, ConfirmModalDialogService, CommonService) {
 
         $scope.isLoginState = false;
 
     	$scope.user = {
             username: '',
             password: ''
+        };
+
+        $scope.isLocalStorageSupported = function () {
+            var testKey = 'testKey',
+                storage = window.localStorage;
+
+            try {
+                storage.setItem(testKey, 'testValue');
+                storage.removeItem(testKey);
+                return true;
+            } catch (error) {
+                return false;
+            }
         };
 
         // 供应商登录
@@ -35,9 +48,15 @@ angular.module('vendorConsoleApp')
                 data: user
             })
             .success(function (data, status) {
-                window.localStorage['cachedUsername'] = user.username;
-                window.localStorage['password'] = user.password;
-                window.localStorage['realName'] = data.name;
+                if ($scope.isLocalStorageSupported) {
+                    window.localStorage['cachedUsername'] = user.username;
+                    window.localStorage['password'] = user.password;
+                    window.localStorage['realName'] = data.name;
+                } else {
+                    document.cookie = "realName="+escape(data.name);
+                }
+
+                CommonService.setCityId(data.city.id);
 
                 $state.go("home");
 

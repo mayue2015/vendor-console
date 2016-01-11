@@ -19,7 +19,7 @@ angular
     .constant('apiConfig', {
         "host": "http://115.28.66.10"  //线上
         // "host": "http://115.28.64.174"  //测试
-        // "host": "http://192.168.1.117"  //本地   http://192.168.1.114
+        // "host": ""  //本地   http://192.168.1.114
     })
 	.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$locationProvider', '$httpProvider', '$provide',
         function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $locationProvider, $httpProvider, $provide) {
@@ -60,6 +60,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
+                                    'app/CommonService.js',
                                     'app/login/login.js'
                                 ]
                             })
@@ -90,6 +91,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
+                                    'app/CommonService.js',
                                     'app/purchase-order-list/PurchaseOrderListCtrl.js'
                                 ]
                             })
@@ -105,6 +107,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
+                                    'app/CommonService.js',
                                     'app/stock-order-list/StockOrderListCtrl.js'
                                 ]
                             })

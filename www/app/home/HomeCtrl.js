@@ -12,9 +12,18 @@ angular.module('vendorConsoleApp')
         // 获取当前登录用户
         $scope.userName = "";
 
-        if (window.localStorage['realName'])
+        if (window.localStorage['realName']) {
             $scope.userName = window.localStorage['realName'];
-        else
-            ConfirmModalDialogService.AsyncAlert("获取登录用户异常");
+        } else {
+			var strcookie = document.cookie;
+			var arrcookie = strcookie.split("; ");
+			for (var i=0; i < arrcookie.length; i++) {
+				var arr = arrcookie[i].split("=");
+				if ("realName" === arr[0]) {
+					$scope.userName = unescape(arr[1]);
+					break;
+				}
+			}
+        }
         
     });

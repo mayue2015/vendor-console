@@ -7,25 +7,35 @@
  * Controller of the vendorConsoleApp
  */
 angular.module('vendorConsoleApp')
-    .controller('PurchaseOrderListCtrl', function($scope, $http, apiConfig, ConfirmModalDialogService) {
+    .controller('PurchaseOrderListCtrl', function($scope, $http, apiConfig, ConfirmModalDialogService, CommonService) {
 
     	$scope.isCheckedAll = false;
         $scope.isCommiting = false;
         $scope.showLoading = true;
-        $scope.searchForm = {};
-    	$scope.searchForm.checkedItemIds = [];
+        $scope.searchForm = {
+            checkedItemIds: [],
+            depotId: null
+        };
+
+        CommonService.getVendorDepots().then(function(data) {
+            $scope.vendorDepots = data;
+        });
 
     	$scope.loadPurchaseOrders = function () {
-    		$http.get(apiConfig.host + "/admin/vendor-api/vendor/order/notReady")
-    			.success(function (data, status) {
-    				// console.log(data.content);
-    				$scope.purchaseOrders = data.content;
-                    $scope.showLoading = false;
-    			})
-    			.error(function (data, status) {
-    				ConfirmModalDialogService.AsyncAlert("获取采购单数据失败");
-                    $scope.showLoading = false;
-    			});
+    		$http({
+                url: apiConfig.host + "/admin/vendor-api/vendor/order/notReady",
+                method: "GET",
+                params: {depotId: $scope.searchForm.depotId}
+            })
+			.success(function (data, status) {
+				// console.log(data.content);
+				$scope.purchaseOrders = data.content;
+                $scope.showLoading = false;
+			})
+			.error(function (data, status) {
+				ConfirmModalDialogService.AsyncAlert("获取采购单数据失败");
+                $scope.showLoading = false;
+			});
     	};
 
     	$scope.loadPurchaseOrders();
