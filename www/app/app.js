@@ -14,7 +14,8 @@ angular
         'ui.router',
         'ui.bootstrap',
         'ui.bootstrap.datetimepicker',
-        'checklist-model'
+        'checklist-model',
+        'ngTouch'
     ])
     .constant('apiConfig', {
         "host": "http://115.28.66.10"  //线上

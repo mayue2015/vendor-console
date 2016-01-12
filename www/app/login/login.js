@@ -48,7 +48,7 @@ angular.module('vendorConsoleApp')
                 data: user
             })
             .success(function (data, status) {
-                if ($scope.isLocalStorageSupported) {
+                if ($scope.isLocalStorageSupported()) {
                     window.localStorage['cachedUsername'] = user.username;
                     window.localStorage['password'] = user.password;
                     window.localStorage['realName'] = data.name;
