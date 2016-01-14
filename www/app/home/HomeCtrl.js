@@ -7,7 +7,7 @@
  * Controller of the vendorConsoleApp
  */
 angular.module('vendorConsoleApp')
-    .controller('HomeCtrl', function($scope, $http, $state, apiConfig, ConfirmModalDialogService) {
+    .controller('HomeCtrl', function($scope, $http, $state, apiConfig) {
 
         // 获取当前登录用户
         $scope.userName = "";

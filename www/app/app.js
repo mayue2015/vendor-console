@@ -21,7 +21,32 @@ angular
         "host": "http://115.28.66.10"  //线上
         // "host": "http://115.28.64.174"  //测试
         // "host": ""  //本地   http://192.168.1.114
+        // "environment": "develop"
     })
+    // .run(function (UpdateService) {
+    //     UpdateService.check().then(function (result) {
+    //         if (result === true) {
+    //             console.log('update available');
+
+    //             var download = UpdateService.download();
+    //             download.then(function (manifest) {
+    //                     console.log('manifest.....:');
+    //                     console.log(JSON.stringify(manifest));
+
+    //                     UpdateService.update();
+    //                 }, function (error) {
+    //                     console.log('error....: ');
+    //                     console.log(JSON.stringify(error));
+    //                 }
+    //             );
+    //         } else {
+    //             console.log('not update available');
+    //         }
+    //     }, function (error) {
+    //         console.log('no update available');
+    //         console.log(JSON.stringify(error));
+    //     });
+    // })
 	.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$locationProvider', '$httpProvider', '$provide',
         function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $locationProvider, $httpProvider, $provide) {
 
@@ -61,7 +86,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
-                                    'app/CommonService.js',
+                                    'app/common/CommonService.js',
                                     'app/login/login.js'
                                 ]
                             })
@@ -92,7 +117,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
-                                    'app/CommonService.js',
+                                    'app/common/CommonService.js',
                                     'app/purchase-order-list/PurchaseOrderListCtrl.js'
                                 ]
                             })
@@ -108,7 +133,7 @@ angular
                             return $ocLazyLoad.load({
                                 name: 'vendorConsoleApp',
                                 files: [
-                                    'app/CommonService.js',
+                                    'app/common/CommonService.js',
                                     'app/stock-order-list/StockOrderListCtrl.js'
                                 ]
                             })

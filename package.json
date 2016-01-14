@@ -6,7 +6,11 @@
    
   },
   "devDependencies": {
-   
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-rev-mtime": "0.0.4",
+    "gulp-util": "^3.0.6"
   },
   "cordovaPlugins": [
     "cordova-plugin-splashscreen",

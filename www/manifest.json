@@ -1,0 +1,22 @@
+{
+  "files": {
+    "templates": {
+      "version": "6fda962b38bfa74935a8cc4618bd158524b5869b",
+      "filename": "templates.js"
+    },
+    "app": {
+      "version": "8d64699ee61b88c0368f597bb8e28c1fd4de7a39",
+      "filename": "app.js"
+    },
+    "style": {
+      "version": "c8e46b472fd6cf65d930a36411f0ee51dc695ffd",
+      "filename": "css/style.css"
+    }
+  },
+  "load": [
+    "templates.js",
+    "app.js",
+    "css/style.css"
+  ],
+  "version": "7a8543a4fde024883121aa86ca9c018c46ab6f83"
+}
