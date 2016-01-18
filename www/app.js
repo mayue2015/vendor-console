@@ -188,65 +188,36 @@ window.BOOTSTRAP_OK = true;
 angular.element(document).ready(function () {
     angular.bootstrap(document, ['vendorConsoleApp']);
 });
-angular.module("vendorConsoleApp")
-	.factory('CommonService', function ($http, apiConfig) {
-
-		var service = {};
-
-		service.setCityId = function (cityId) {
-			service.cityId = cityId;
-		};
-
-		service.getVendorDepots = function () {
-			return $http({
-				url: apiConfig.host + "/admin/vendor-api/vendor/depot/list/" + service.cityId,
-				method: "GET"
-			}).then(function (payload) {
-				return payload.data;
-			});
-		};
-
-		return service;
-	});
+'use strict';
+/**
+ * @ngdoc function
+ * @name vendorConsoleApp.controller:HomeCtrl
+ * @description
+ * # HomeCtrl
+ * Controller of the vendorConsoleApp
+ */
 angular.module('vendorConsoleApp')
-	.factory('ConfirmModalDialogService', function () {
+    .controller('HomeCtrl', function($scope, $http, $state, apiConfig) {
 
-		var service = {};
+        // 获取当前登录用户
+        $scope.userName = "";
 
-		service.AsyncConfirmYesNo = function (msg, yesFn) {
-			var $confirm = $("#modalConfirmYesNo");
-		    
-		    $confirm.modal({backdrop: 'static', keyboard: false});
-		    $confirm.modal('show');
-		    
-		    $("#lblMsgConfirmYesNo").html(msg);
+        if (window.localStorage['realName']) {
+            $scope.userName = window.localStorage['realName'];
+        } else {
+			var strcookie = document.cookie;
+			var arrcookie = strcookie.split("; ");
+			for (var i=0; i < arrcookie.length; i++) {
+				var arr = arrcookie[i].split("=");
+				if ("realName" === arr[0]) {
+					$scope.userName = unescape(arr[1]);
+					break;
+				}
+			}
+        }
+        
+    });
 
-		    $("#btnNoConfirmYesNo").off('click').click(function () {
-		        $confirm.modal("hide");
-		    });
-
-		    $("#btnYesConfirmYesNo").off('click').click(function () {
-		        $confirm.modal("hide");
-		        yesFn();
-		    });
-		}
-
-		service.AsyncAlert = function (msg) {
-			var $alert = $("#alertModal");
-		    
-		    $alert.modal({backdrop: 'static', keyboard: false});
-		    $alert.modal('show');
-		    
-		    $("#alertMsg").html(msg);
-
-		    $("#alertBtn").off('click').click(function () {
-		        $alert.modal("hide");
-		        $("body .modal-backdrop").remove();
-		    });
-		}
-
-		return service;
-	});
 'use strict';
 /**
  * @ngdoc function
@@ -373,6 +344,65 @@ angular.module('vendorConsoleApp')
 	        }
 	    };
 }]);
+angular.module("vendorConsoleApp")
+	.factory('CommonService', function ($http, apiConfig) {
+
+		var service = {};
+
+		service.setCityId = function (cityId) {
+			service.cityId = cityId;
+		};
+
+		service.getVendorDepots = function () {
+			return $http({
+				url: apiConfig.host + "/admin/vendor-api/vendor/depot/list/" + service.cityId,
+				method: "GET"
+			}).then(function (payload) {
+				return payload.data;
+			});
+		};
+
+		return service;
+	});
+angular.module('vendorConsoleApp')
+	.factory('ConfirmModalDialogService', function () {
+
+		var service = {};
+
+		service.AsyncConfirmYesNo = function (msg, yesFn) {
+			var $confirm = $("#modalConfirmYesNo");
+		    
+		    $confirm.modal({backdrop: 'static', keyboard: false});
+		    $confirm.modal('show');
+		    
+		    $("#lblMsgConfirmYesNo").html(msg);
+
+		    $("#btnNoConfirmYesNo").off('click').click(function () {
+		        $confirm.modal("hide");
+		    });
+
+		    $("#btnYesConfirmYesNo").off('click').click(function () {
+		        $confirm.modal("hide");
+		        yesFn();
+		    });
+		}
+
+		service.AsyncAlert = function (msg) {
+			var $alert = $("#alertModal");
+		    
+		    $alert.modal({backdrop: 'static', keyboard: false});
+		    $alert.modal('show');
+		    
+		    $("#alertMsg").html(msg);
+
+		    $("#alertBtn").off('click').click(function () {
+		        $alert.modal("hide");
+		        $("body .modal-backdrop").remove();
+		    });
+		}
+
+		return service;
+	});
 'use strict';
 /**
  * @ngdoc function
@@ -460,36 +490,6 @@ angular.module('vendorConsoleApp')
             $scope.user.password = "";
         };
 
-    });
-
-'use strict';
-/**
- * @ngdoc function
- * @name vendorConsoleApp.controller:HomeCtrl
- * @description
- * # HomeCtrl
- * Controller of the vendorConsoleApp
- */
-angular.module('vendorConsoleApp')
-    .controller('HomeCtrl', function($scope, $http, $state, apiConfig) {
-
-        // 获取当前登录用户
-        $scope.userName = "";
-
-        if (window.localStorage['realName']) {
-            $scope.userName = window.localStorage['realName'];
-        } else {
-			var strcookie = document.cookie;
-			var arrcookie = strcookie.split("; ");
-			for (var i=0; i < arrcookie.length; i++) {
-				var arr = arrcookie[i].split("=");
-				if ("realName" === arr[0]) {
-					$scope.userName = unescape(arr[1]);
-					break;
-				}
-			}
-        }
-        
     });
 
 angular.module('vendorConsoleApp')
