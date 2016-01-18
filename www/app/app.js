@@ -9,6 +9,7 @@
  */
 angular
 	.module('vendorConsoleApp', [
+        'templatesCache',
         'oc.lazyLoad',
         'angular-loading-bar',
         'ui.router',
@@ -23,30 +24,37 @@ angular
         // "host": ""  //本地   http://192.168.1.114
         // "environment": "develop"
     })
-    // .run(function (UpdateService) {
-    //     UpdateService.check().then(function (result) {
-    //         if (result === true) {
-    //             console.log('update available');
+    .run(function () {
+        var fs = new CordovaPromiseFS({
+            Promise: Promise
+        });
 
-    //             var download = UpdateService.download();
-    //             download.then(function (manifest) {
-    //                     console.log('manifest.....:');
-    //                     console.log(JSON.stringify(manifest));
+        var loader = new CordovaAppLoader({
+            fs: fs,
+            serverRoot: 'http://115.28.66.10/vendor/',
+            localRoot: 'app',
+            cacheBuster: true, 
+            checkTimeout: 10000,
+            mode: 'mirror',
+            manifest: 'manifest.json' + "?" + Date.now()
+        });
 
-    //                     UpdateService.update();
-    //                 }, function (error) {
-    //                     console.log('error....: ');
-    //                     console.log(JSON.stringify(error));
-    //                 }
-    //             );
-    //         } else {
-    //             console.log('not update available');
-    //         }
-    //     }, function (error) {
-    //         console.log('no update available');
-    //         console.log(JSON.stringify(error));
-    //     });
-    // })
+        function check(){
+            loader.check()
+                .then(function(){
+                    console.log("-----into check ---------");
+                    return loader.download();
+                })
+                .then(function(){
+                    console.log("--------into download ---------");
+                    return loader.update();
+                },function(err){
+                    console.error('Auto-update error:',err);
+                });
+        }
+
+        check();
+    })
 	.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$locationProvider', '$httpProvider', '$provide',
         function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $locationProvider, $httpProvider, $provide) {
 
@@ -78,7 +86,7 @@ angular
 
             $stateProvider
 	            .state('login', {
-                    templateUrl: 'app/login/login.html',
+                    templateUrl: 'login/login.html',
                     controller: 'LoginCtrl',
                     url: '/login',
                     resolve: {
@@ -94,7 +102,7 @@ angular
                     }
 	            })
                 .state('home', {
-                    templateUrl: 'app/home/home.html',
+                    templateUrl: 'home/home.html',
                     controller: 'HomeCtrl',
                     url: '/home',
                     resolve: {
@@ -109,7 +117,7 @@ angular
                     }
                 })
                 .state('purchase-order-list', {
-                    templateUrl: 'app/purchase-order-list/purchase-order-list.html',
+                    templateUrl: 'purchase-order-list/purchase-order-list.html',
                     controller: 'PurchaseOrderListCtrl',
                     url: '/purchase-order-list',
                     resolve: {
@@ -125,7 +133,7 @@ angular
                     }
                 })
                 .state('stock-order-list', {
-                    templateUrl: 'app/stock-order-list/stock-order-list.html',
+                    templateUrl: 'stock-order-list/stock-order-list.html',
                     controller: 'StockOrderListCtrl',
                     url: '/stock-order-list',
                     resolve: {
@@ -141,7 +149,7 @@ angular
                     }
                 })
                 .state('history-purchase-list', {
-                    templateUrl: 'app/history-purchase-list/history-purchase-list.html',
+                    templateUrl: 'history-purchase-list/history-purchase-list.html',
                     controller: 'HistoryPurchaseListCtrl',
                     url: '/history-purchase-list/?page&pageSize&start&end',
                     resolve: {
@@ -156,7 +164,7 @@ angular
                     }
                 })
                 .state('profile', {
-                    templateUrl: 'app/profile/profile.html',
+                    templateUrl: 'profile/profile.html',
                     controller: 'ProfileCtrl',
                     url: '/profile',
                     resolve: {
@@ -174,3 +182,9 @@ angular
                 })
         }
     ]);
+
+window.BOOTSTRAP_OK = true;
+
+angular.element(document).ready(function () {
+    angular.bootstrap(document, ['vendorConsoleApp']);
+});
