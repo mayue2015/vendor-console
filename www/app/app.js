@@ -19,7 +19,8 @@ angular
         'ngTouch'
     ])
     .constant('apiConfig', {
-        "host": "http://115.28.66.10"  //线上
+        // "host": "http://115.28.66.10"  //线上
+        "host": "http://vendor.canguanwuyou.cn"
         // "host": "http://115.28.64.174"  //测试
         // "host": ""  //本地   http://192.168.1.114
         // "environment": "develop"
@@ -31,7 +32,7 @@ angular
 
         var loader = new CordovaAppLoader({
             fs: fs,
-            serverRoot: 'http://115.28.66.10/vendor/',
+            serverRoot: 'http://vendor.canguanwuyou.cn/vendor/',//http://115.28.66.10/vendor/
             localRoot: 'app',
             cacheBuster: true, 
             checkTimeout: 10000,
